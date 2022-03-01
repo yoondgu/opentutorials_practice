@@ -1,28 +1,35 @@
-
-public class account_app {
-	
-	public static double valueOfsupply = 10000;
+class accounting{
+	//class 변수와 instance 변수 정의
+	public double valueOfsupply;
+	public double expenseRate;
 	public static double vatrate = 0.1;
-	public static double expenseRate = 0.3;
 	public static double[] dividend = {0.5, 0.3, 0.2};
 	
-	public static double getVAT() {
+	//생성자 정의
+	public accounting(double valueOfsupply, double expenseRate){
+		this.valueOfsupply = valueOfsupply;
+		this.expenseRate = expenseRate;
+	}
+	
+	//메소드 정의
+	public double getVAT() {
 		return valueOfsupply * vatrate;
 	}
-	public static double getTotal() {
+	public double getTotal() {
 		return valueOfsupply + getVAT();
 	}
-	public static double getExpense() {
+	public double getExpense() {
 		return valueOfsupply * expenseRate;
 	}
-	public static double getIncome() {
+	public double getIncome() {
 		return valueOfsupply - getExpense();
 	}
-	public static double getDividend(int i) {
+	public double getDividend(int i) {
 		return getIncome() * dividend[i];
 	}
-
-	public static void main(String[] args) {		
+	
+	public void print(String caseName) {
+		System.out.println(caseName);
 		System.out.println("Value of supply: " + valueOfsupply);
 		System.out.println("VAT: " + getVAT());
 		System.out.println("Total: " + getTotal());
@@ -30,7 +37,21 @@ public class account_app {
 		System.out.println("Income: " + getIncome());
 		System.out.println("Dividend1: " + getDividend(0));
 		System.out.println("Dividend2: " + getDividend(1));
-		System.out.println("Dividend3: " + getDividend(2));
+		System.out.println("Dividend3: " + getDividend(2));	
+		System.out.println("\n");
+	}
+}
+
+
+public class account_app {
+	
+	public static void main(String[] args) {		
+		accounting a1 = new accounting(10000, 0.3);
+		accounting a2 = new accounting(20000, 0.5);
+		
+		a1.print("* case 1");
+		a2.print("* case 2");
+				
 	}
 
 }
